@@ -1,0 +1,71 @@
+2017/05/21 23:26:41 pq: SSL is not enabled on the server
+2017/05/21 23:27:26 pq: relation "activities" does not exist
+2017/05/22 00:40:08 Start testing
+2017/05/22 21:59:56 Start testing
+2017/05/22 22:00:53 Start testing
+2017/05/22 22:02:01 Start testing
+2017/05/22 22:05:31 Start testing
+2017/05/22 22:08:07 Start testing
+2017/05/22 22:09:22 Start testing
+2017/05/22 22:21:38 Start testing
+2017/05/22 22:25:51 Start testing
+2017/05/22 22:42:01 Start testing
+2017/05/23 20:34:43 Start testing
+2017/05/23 20:40:37 Start testing
+2017/05/23 20:43:16 Start testing
+2017/05/23 20:44:10 Start testing
+2017/05/23 20:48:21 Start testing
+2017/05/23 22:46:23 Start testing
+2017/05/23 22:50:25 Start testing
+2017/05/23 22:51:27 Start testing
+2017/05/23 23:17:54 start
+2017/05/23 23:20:46 start
+2017/05/23 23:20:46 120
+2017/05/23 23:22:13 start
+2017/05/23 23:22:13 120
+2017/05/23 23:25:12 start
+2017/05/23 23:25:12 120
+2017/05/23 23:25:12 start create
+2017/05/23 23:25:12 Invalid request payload
+2017/05/23 23:25:54 start
+2017/05/23 23:25:54 120
+2017/05/23 23:25:54 start create
+2017/05/23 23:25:54 {0  0 }
+2017/05/23 23:25:54 Invalid request payload
+2017/05/23 23:26:58 listen tcp :8000: bind: address already in use
+2017/05/23 23:27:45 start
+2017/05/23 23:27:45 120
+2017/05/23 23:27:45 start create
+2017/05/23 23:27:45 {{"name":tv,"value":%!s(float64=120),"unit":min}}
+2017/05/23 23:27:45 Invalid request payload
+2017/05/23 23:30:44 start
+2017/05/23 23:30:44 120
+2017/05/23 23:30:44 start create
+2017/05/23 23:30:44 {{"name":tv,"value":120,"unit":min}}
+2017/05/23 23:30:44 Invalid request payload
+2017/05/23 23:31:27 start
+2017/05/23 23:31:27 120
+2017/05/23 23:31:27 start create
+2017/05/23 23:31:27 {{"name":'tv',"value":120,"unit":'min'}}
+2017/05/23 23:31:27 Invalid request payload
+2017/05/23 23:33:14 start
+2017/05/23 23:33:14 120
+2017/05/23 23:33:14 start create
+2017/05/23 23:33:14 {{"id":10,"name":'tv',"value":120,"unit":'min'}}
+2017/05/23 23:33:14 Invalid request payload
+2017/05/23 23:34:25 start
+2017/05/23 23:34:25 120
+2017/05/23 23:34:25 start create
+2017/05/23 23:34:25 {{"name":"tv","value":120,"unit":"min"}}
+2017/05/23 23:34:25 {0 tv 120 min}
+2017/05/23 23:34:25 pq: duplicate key value violates unique constraint "activities_pkey"
+2017/05/23 23:43:46 start
+2017/05/23 23:43:46 120
+2017/05/23 23:43:46 start create
+2017/05/23 23:43:46 {{"name":"tv","value":120,"unit":"min"}}
+2017/05/23 23:43:46 {0 tv 120 min}
+2017/05/23 23:46:51 start
+2017/05/23 23:46:51 120.5
+2017/05/23 23:46:51 start create
+2017/05/23 23:46:51 {{"name":"tv","value":120.5,"unit":"min"}}
+2017/05/23 23:46:51 {0 tv 120.5 min}
