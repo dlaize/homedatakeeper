@@ -1,4 +1,3 @@
-
 sudo: required
 
 language: go
@@ -28,7 +27,7 @@ script:
  - go test -v ./...
  - go build
 
- after_success:
+after_success:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO=dlaize/homedatakeeper
