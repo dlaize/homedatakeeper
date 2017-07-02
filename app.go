@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	_ "github.com/lib/pq"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+
 	"github.com/dlaize/homedatakeeper/activity"
 )
 

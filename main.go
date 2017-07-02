@@ -10,7 +10,7 @@ import (
 func main() {
 	util.InitLogger()
 	a := App{}
-	database.Connect("5432")
+	database.Initialize()
 	a.Initialize()
-    	a.Run(":8000")
+	a.Run(":8000")
 }

@@ -10,7 +10,7 @@ ADD . /gopath/src/github.com/dlaize/homedatakeeper
 
 RUN cd /gopath/src/github.com/dlaize/homedatakeeper
 RUN go get github.com/gorilla/mux
-RUN go get github.com/lib/pq
+RUN gp get github.com/influxdata/influxdb/client/v2
 RUN go build -o goapp
 
 ENTRYPOINT ["./goapp"]

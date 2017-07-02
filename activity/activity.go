@@ -1,58 +1,56 @@
 package activity
 
 import (
-	"database/sql"
-	"errors"
+	"time"
+
+	"github.com/dlaize/homedatakeeper/database"
+	client "github.com/influxdata/influxdb/client/v2"
 )
 
-type activity struct {
-	ID    int     `json:"id"`
+type Activity struct {
 	Name  string  `json:"name"`
 	Value float64 `json:"value"`
 	Unit  string  `json:"unit"`
 }
 
-func (a *activity) getActivity(db *sql.DB) error {
-	return db.QueryRow("SELECT name, value, unit FROM activities WHERE id=$1",
-		a.ID).Scan(&a.Name, &a.Value, &a.Unit)
-}
+// Add activity information to database
+func (a *Activity) createActivity() error {
 
-func getListActivities(db *sql.DB, start, count int) ([]activity, error) {
-	rows, err := db.Query(
-		"SELECT id, name, value, unit FROM activities LIMIT $1 OFFSET $2",
-		count, start)
+	if a.Unit == "min" {
+		a.Value = a.Value * 60
+	}
+
+	tags := map[string]string{
+		"unit": a.Unit,
+		"type": "activity",
+	}
+	fields := map[string]interface{}{
+		"value": a.Value,
+	}
+
+	bps, err := client.NewBatchPoints(client.BatchPointsConfig{
+		Database:  database.Dbname,
+		Precision: "s",
+	})
 
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	defer rows.Close()
+	point, err := client.NewPoint(
+		a.Name,
+		tags,
+		fields,
+		time.Now(),
+	)
 
-	activities := []activity{}
-
-	for rows.Next() {
-		var a activity
-		if err := rows.Scan(&a.ID, &a.Name, &a.Value, &a.Unit); err != nil {
-			return nil, err
-		}
-		activities = append(activities, a)
+	if err != nil {
+		return err
 	}
 
-	return activities, nil
-}
+	bps.AddPoint(point)
 
-func (a *activity) updateActivity(db *sql.DB) error {
-	return errors.New("Not implemented")
-}
-
-func (a *activity) deleteActivity(db *sql.DB) error {
-	return errors.New("Not implemented")
-}
-
-func (a *activity) createActivity(db *sql.DB) error {
-	err := db.QueryRow(
-		"INSERT INTO activities(name, value, unit) VALUES($1, $2, $3) RETURNING id",
-		a.Name, a.Value, a.Unit).Scan(&a.ID)
+	err = database.InfluxDBcon.Write(bps)
 
 	if err != nil {
 		return err
