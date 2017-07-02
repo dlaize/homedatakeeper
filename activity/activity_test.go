@@ -37,14 +37,14 @@ func TestCreateActivity(t *testing.T) {
 	json.Unmarshal(response.Body.Bytes(), &m)
 
 	if m["name"] != "test_activity" {
-		t.Errorf("Expected product name to be 'test_activity'. Got '%v'", m["name"])
+		t.Errorf("Expected name to be 'test_activity'. Got '%v'", m["name"])
 	}
 
-	if m["value"] != 673.2 {
-		t.Errorf("Expected activity value to be '673.2'. Got '%v'", m["value"])
+	if m["value"] != 11.22 {
+		t.Errorf("Expected value to be '11.22'. Got '%v'", m["value"])
 	}
 
 	if m["unit"] != "min" {
-		t.Errorf("Expected activity unit to be 'min'. Got '%v'", m["value"])
+		t.Errorf("Expected unit to be 'min'. Got '%v'", m["value"])
 	}
 }

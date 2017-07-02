@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/dlaize/homedatakeeper/activity"
+	"github.com/dlaize/homedatakeeper/probe"
 )
 
 type App struct {
@@ -20,6 +21,7 @@ func (a *App) Initialize() {
 
 func (a *App) initializeControllers(r *mux.Router) {
 	activity.InitializeActivityRoutes(r)
+	probe.InitializeTempProbeRoutes(r)
 }
 
 func (a *App) Run(addr string) {
