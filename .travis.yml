@@ -20,7 +20,7 @@ env:
 
 before_install:
 - docker pull influxdb
-- docker run --name -d influxdb-test -p 8086:8086 influxdb:latest
+- docker run -d --name influxdb-test -p 8086:8086 influxdb:latest
 - docker ps -a
 
 script:
