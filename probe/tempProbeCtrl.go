@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/dlaize/homedatakeeper/util"
 	"github.com/gorilla/mux"
@@ -30,7 +31,11 @@ func handleTempProbe(w http.ResponseWriter, r *http.Request) {
 	temp := vars["temp"]
 	hygro := vars["hygro"]
 
-	payload := []byte(fmt.Sprintf(`{"name":"%s","etage":%s,"temp":%s, "hygro":%s}`, name, etage, temp, hygro))
+	//zibase send 231 for 23.1°
+	i, _ := strconv.ParseFloat(temp, 64)
+	ct := i / 10
+
+	payload := []byte(fmt.Sprintf(`{"name":"%s","etage":%s,"temp":%f, "hygro":%s}`, name, etage, ct, hygro))
 
 	req, _ := http.NewRequest("POST", "/tempprobes", bytes.NewBuffer(payload))
 	router.ServeHTTP(w, req)
