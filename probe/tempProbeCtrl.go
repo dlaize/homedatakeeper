@@ -35,7 +35,7 @@ func handleTempProbe(w http.ResponseWriter, r *http.Request) {
 	i, _ := strconv.ParseFloat(temp, 64)
 	ct := i / 10
 
-	payload := []byte(fmt.Sprintf(`{"name":"%s","etage":%s,"temp":%f, "hygro":%s}`, name, etage, ct, hygro))
+	payload := []byte(fmt.Sprintf(`{"name":"%s","floor":%s,"temp":%f, "hygro":%s}`, name, etage, ct, hygro))
 
 	req, _ := http.NewRequest("POST", "/tempprobes", bytes.NewBuffer(payload))
 	router.ServeHTTP(w, req)

@@ -13,15 +13,16 @@ type TempProbe struct {
 	Name  string  `json:"name"`
 	Temp  float64 `json:"temp"`
 	Hygro float64 `json:"hygro"`
-	Etage int     `json:"etage"`
+	Floor int     `json:"floor"`
 }
 
 // Add probe information to database
 func (p *TempProbe) createTempProbe() error {
 
 	tags := map[string]string{
-		"etage": strconv.Itoa(p.Etage),
+		"floor": strconv.Itoa(p.Floor),
 		"type":  "temp",
+		"room":  p.Name,
 	}
 	fields := map[string]interface{}{
 		"temp":  p.Temp,
@@ -38,7 +39,7 @@ func (p *TempProbe) createTempProbe() error {
 	}
 
 	point, err := client.NewPoint(
-		p.Name,
+		"probe",
 		tags,
 		fields,
 		time.Now(),

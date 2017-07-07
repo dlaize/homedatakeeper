@@ -26,7 +26,7 @@ func TestMain(m *testing.M) {
 
 func TestCreateTempProbe(t *testing.T) {
 
-	payload := []byte(`{"name":"test_tempProbe", "etage":1, "temp":21.2, "hygro":55.3}`)
+	payload := []byte(`{"name":"test_tempProbe", "floor":1, "temp":21.2, "hygro":55.3}`)
 
 	req, _ := http.NewRequest("POST", "/tempprobes", bytes.NewBuffer(payload))
 	response := util.ExecuteRequest(req, r)
@@ -40,8 +40,8 @@ func TestCreateTempProbe(t *testing.T) {
 		t.Errorf("Expected name to be 'test_tempProbe'. Got '%v'", m["name"])
 	}
 
-	if m["etage"] != 1.0 {
-		t.Errorf("Expected etage to be '1'. Got '%v'", m["etage"])
+	if m["floor"] != 1.0 {
+		t.Errorf("Expected floor to be '1'. Got '%v'", m["etage"])
 	}
 
 	if m["temp"] != 21.2 {
