@@ -17,7 +17,7 @@ var router *mux.Router
 func InitializeTempProbeRoutes(r *mux.Router) {
 	router = r
 	r.HandleFunc("/tempprobes", createTempProbe).Methods("POST")
-	r.HandleFunc("/tempprobes/{name}/{etage:[0-1]{1}}/{temp:[0-9]*\\.?[0-9]+}/{hygro:[0-9]*\\.?[0-9]+}", handleTempProbe).Methods("GET")
+	r.HandleFunc("/tempprobes/{name}/{etage:[0-9]{1}}/{temp:[0-9]*\\.?[0-9]+}/{hygro:[0-9]*\\.?[0-9]+}", handleTempProbe).Methods("GET")
 }
 
 // Zibase can only send GET requests so we generate the real POST
